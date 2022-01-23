@@ -2,9 +2,9 @@ package ru.job4j.oop;
 
 public class Error {
 
-    boolean active;
-    int status;
-    String message;
+    private boolean active;
+    private int status;
+    private String message;
 
     public Error() {
     }
@@ -15,12 +15,6 @@ public class Error {
         this.message = message;
     }
 
-    public void printDefaultInfo() {
-        System.out.println("Дефолтное значение boolean: " + active);
-        System.out.println("Дефолтное значение int: " + status);
-        System.out.println("Дефолтное значение String: " + message);
-    }
-
     public void printInfo() {
         System.out.println(active);
         System.out.println(status);
@@ -29,7 +23,7 @@ public class Error {
 
     public static void main(String[] args) {
         Error constructor1 = new Error();
-        constructor1.printDefaultInfo();
+        constructor1.printInfo();
         System.out.println();
         Error constructor2 = new Error(true, 12, "Привет");
         constructor2.printInfo();
