@@ -16,4 +16,14 @@ public class TriangleTest {
         double rsl = triangle.area();
         assertThat(rsl, closeTo(8, 0.001));
     }
+
+    @Test
+    public void when11and22and33ThenMinus1() {
+        Point a = new Point(1, 1);
+        Point b = new Point(2, 2);
+        Point c = new Point(3, 3);
+        Triangle triangle = new Triangle(a, b, c);
+        double rsl = triangle.area();
+        assertThat(rsl, closeTo(-1, 0.001));
+    }
 }
