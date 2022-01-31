@@ -2,23 +2,23 @@ package ru.job4j.condition;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 public class MaxTest {
 
     @Test
-    public void max() {
-        Max check = new Max();
-        int result = Math.max(1, 2);
-        assertThat(result, is(2));
+    public void when1And2Then2() {
+        int result = Max.max(1, 2);
+        System.out.println(result);
     }
 
     @Test
-    public void testMax() {
+    public void wen1and2and3Then3() {
+        int result2 = Max.max(1, 2, 3);
+        System.out.println(result2);
     }
 
     @Test
-    public void testMax1() {
+    public void when1and2and3and4Then4() {
+        int result3 = Max.max(1, 2, 3, 4);
+        System.out.println(result3);
     }
 }
