@@ -4,16 +4,8 @@ public class Doctor extends Profession {
 
     private String recipe;
 
-    public Doctor() {
-    }
-
     public Doctor(String name, String surname, String education, int birthday, String recipe) {
         super(name, surname, education, birthday);
-        this.recipe = recipe;
-    }
-
-    public Doctor(String recipe) {
-        super();
         this.recipe = recipe;
     }
 

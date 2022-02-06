@@ -3,16 +3,8 @@ package ru.job4j.inheritance;
 public class Builder extends Engineer {
     private int numberOfDaileTask;
 
-    public Builder() {
-    }
-
     public Builder(String name, String surname, String education, int birthday, String areaOfEmployment, int numberOfDaileTask) {
         super(name, surname, education, birthday, areaOfEmployment);
-        this.numberOfDaileTask = numberOfDaileTask;
-    }
-
-    public Builder(int numberOfDaileTask) {
-        super();
         this.numberOfDaileTask = numberOfDaileTask;
     }
 
