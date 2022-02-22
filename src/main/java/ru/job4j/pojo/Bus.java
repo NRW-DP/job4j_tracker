@@ -11,6 +11,6 @@ public class Bus implements Transport {
 
      @Override
     public double refuel(double quantity, double price) {
-        return quantity / price;
+        return price;
     }
 }
