@@ -9,7 +9,7 @@ public class Bus implements Transport {
     public void passenger(int count) {
     }
 
-    @Override
+     @Override
     public double refuel(double quantity, double price) {
         return quantity / price;
     }

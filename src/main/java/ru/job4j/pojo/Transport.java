@@ -1,7 +1,7 @@
 package ru.job4j.pojo;
 
 public interface Transport {
-    void drive();
+     void drive();
 
     void passenger(int count);
 
