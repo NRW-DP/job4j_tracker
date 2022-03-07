@@ -106,6 +106,6 @@ public class StartUI {
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
+        new StartUI().init(input, tracker);
     }
 }
