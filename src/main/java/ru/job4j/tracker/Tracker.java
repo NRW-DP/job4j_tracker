@@ -9,7 +9,12 @@ public class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        int size = 0;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
         return rsl;
     }
 
