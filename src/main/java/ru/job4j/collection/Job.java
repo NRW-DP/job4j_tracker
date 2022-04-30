@@ -1,6 +1,6 @@
 package ru.job4j.collection;
 
-public class Job implements Comparable<Job> {
+public class Job {
     private String name;
     private int priority;
 
@@ -23,10 +23,5 @@ public class Job implements Comparable<Job> {
                 + "name='" + name + '\''
                 + ", priority=" + priority
                 + '}';
-    }
-
-    @Override
-    public int compareTo(Job another) {
-        return Integer.compare(priority, another.priority);
     }
 }
