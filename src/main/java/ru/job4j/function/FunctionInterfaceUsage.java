@@ -7,13 +7,13 @@ import java.util.function.*;
 
 public class FunctionInterfaceUsage {
     public static void main(String[] args) {
-  List<String> list = List.of("one", "two", "three", "one", "two", "three");
-Supplier<Set<String>> sup = () -> new HashSet<>(list);
-BiConsumer<Integer, String> consumer = (s, s1) -> System.out.println(s + s1);
-Set<String> strings = sup.get();
-int i = 1;
-for (String s : strings) {
-    consumer.accept(i++, " is " + s);
-}
+        List<String> list = List.of("one", "two", "three", "one", "two", "three");
+        Supplier<Set<String>> sup = () -> new HashSet<>(list);
+        BiConsumer<Integer, String> consumer = (s, s1) -> System.out.println(s + s1);
+        Set<String> strings = sup.get();
+        int i = 1;
+        for (String s : strings) {
+            consumer.accept(i++, " is " + s);
+        }
     }
 }
