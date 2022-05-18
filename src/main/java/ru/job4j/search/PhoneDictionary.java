@@ -24,10 +24,10 @@ public class PhoneDictionary {
         return result;
          Ниже находится реализция метода с использованием  Предиката / лямбда / функции высшего порядка;
           */
-        Predicate<Person> first = lmd -> lmd.getPhone().contains(key);
-        Predicate<Person> second = lmd -> lmd.getAddress().contains(key);
-        Predicate<Person> third = lmd -> lmd.getName().contains(key);
-        Predicate<Person> fourth = lmd -> lmd.getSurname().contains(key);
+        Predicate<Person> first = p -> p.getPhone().contains(key);
+        Predicate<Person> second = p -> p.getAddress().contains(key);
+        Predicate<Person> third = p -> p.getName().contains(key);
+        Predicate<Person> fourth = p -> p.getSurname().contains(key);
             Predicate<Person> combine = first.or(second).or(third).or(fourth);
             ArrayList<Person> result = new ArrayList<>();
             for (Person person : persons) {
