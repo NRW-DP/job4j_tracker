@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class SchoolTest {
-    @Test
+     @Test
     public void whenCollectClassA() {
         List<Student> students = List.of(
                 new Student(10, "Surname1"),
