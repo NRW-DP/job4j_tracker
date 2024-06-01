@@ -1,17 +1,17 @@
 # job4j_tracker
 
-## О проекте
+## About the project
 
-Этот проект - консольное приложение. Пользователю отображается меню с возможностями программы.
+This project is a console application. The user is shown a menu with the programme features.
 
-Программа может:
+The programme can:
 
-1. Добавлять заявку.
+1. Adding an order.
 
-1. Заменять заявку на новую заявку по ID.
+2. Replace the order with a new order by ID.
 
-1. Удалять заявку по ID.
+3. Delete an order by ID.
 
-1. Отображать список всех заявок.
+4. Display a list of all orders.
 
-1. Производить поиск по имени заявки.
+5. Search by order name.
