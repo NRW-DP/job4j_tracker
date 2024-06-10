@@ -53,13 +53,15 @@ public class MemTracker implements Store {
         return rls;
     }
 
-    public boolean delete(int id) {
-        int index = indexOf(id);
-        boolean rsl = index != -1;
-        if (rsl) {
-            items.remove(index);
+    public void delete(int id) {
+        try {
+            int index = indexOf(id);
+            if (index != -1) {
+                items.remove(index);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Error when deleting an item: " + e.getMessage());
         }
-        return rsl;
     }
 
     @Override

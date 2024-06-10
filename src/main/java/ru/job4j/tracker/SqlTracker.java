@@ -74,11 +74,15 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public boolean delete(int id) {
+    public void delete(int id) {
         try (PreparedStatement statement = connection.prepareStatement(DELETE_ITEM)) {
             statement.setInt(1, id);
             int updateCount = statement.executeUpdate();
-            return updateCount > 0;
+            if (updateCount == 0) {
+                System.out.println("The element with id " + id + " was not found and deleted");
+            } else {
+                System.out.println("The element with id " + id + " has been successfully deleted");
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Failed to delete item with id " + id, e);
         }

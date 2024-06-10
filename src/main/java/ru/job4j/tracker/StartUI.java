@@ -19,7 +19,10 @@ public class StartUI {
                 continue;
             }
             UserAction action = actions.get(select);
-            run = action.execute(input, tracker);
+            action.execute(input, tracker);
+            if (action instanceof ExitAction) {
+                run = false;
+            }
         }
     }
 
