@@ -62,10 +62,7 @@ public class MemTracker implements Store {
         return rsl;
     }
 
-
-
     @Override
     public void close() throws Exception {
-
     }
 }
