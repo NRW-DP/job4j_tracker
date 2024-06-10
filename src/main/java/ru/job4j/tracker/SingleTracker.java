@@ -41,5 +41,6 @@ public class SingleTracker {
             tracker.delete(id);
         } catch (Exception e) {
             throw new RuntimeException("Failed to delete item with id " + id, e);
-        }    }
+        }
+    }
 }
