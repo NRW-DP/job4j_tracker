@@ -21,7 +21,7 @@ public class DeleteAction implements UserAction {
             tracker.delete(id);
             out.println("Order deleted successfully");
             return true;
-        } else{
+        } else {
             out.println("Errors of deleting an order: order with id " + id + " not found.");
             return false;
         }
