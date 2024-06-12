@@ -60,6 +60,14 @@ public class SqlTracker implements Store {
         return item;
     }
 
+    private Item createItem(ResultSet set) throws SQLException {
+        return new Item(
+                set.getInt("id"),
+                set.getString("name"),
+                set.getTimestamp("created").toLocalDateTime()
+        );
+    }
+
     @Override
     public boolean replace(int id, Item item) {
         try (PreparedStatement statement = connection.prepareStatement(REPLACE_ITEM)) {
@@ -94,11 +102,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement = connection.prepareStatement(FIND_ALL_ITEMS)) {
             try (ResultSet set = statement.executeQuery()) {
                 while (set.next()) {
-                    itemList.add(new Item(
-                            set.getInt("id"),
-                            set.getString("name"),
-                            set.getTimestamp("created").toLocalDateTime()
-                    ));
+                    itemList.add(createItem(set));
                 }
             }
         } catch (Exception e) {
@@ -114,11 +118,7 @@ public class SqlTracker implements Store {
             statement.setString(1, key);
             try (ResultSet set = statement.executeQuery()) {
                 while (set.next()) {
-                    itemList.add(new Item(
-                            set.getInt("id"),
-                            set.getString("name"),
-                            set.getTimestamp("created").toLocalDateTime()
-                    ));
+                    itemList.add(createItem(set));
                 }
             }
         } catch (Exception e) {
@@ -133,11 +133,7 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             try (ResultSet set = statement.executeQuery()) {
                 if (set.next()) {
-                    return new Item(
-                            set.getInt("id"),
-                            set.getString("name"),
-                            set.getTimestamp("created").toLocalDateTime()
-                    );
+                    return createItem(set);
                 } else {
                     throw new IllegalArgumentException("Item with id " + id + " not found");
                 }
