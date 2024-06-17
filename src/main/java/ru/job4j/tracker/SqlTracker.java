@@ -19,7 +19,6 @@ public class SqlTracker implements Store {
 
     public SqlTracker(Connection connection) {
         this.connection = connection;
-        init();
     }
 
     public SqlTracker() {

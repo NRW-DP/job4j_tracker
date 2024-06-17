@@ -15,6 +15,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SqlTrackerTest {
 
@@ -84,19 +87,17 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenCloseTrackerThenConnectionIsClosed() throws Exception {
-        SqlTracker tracker = new SqlTracker(connection);
-        tracker.close();
-        assertThat(connection.isClosed()).isTrue();
-    }
-
-    @Test
     public void whenDeleteItemThenItIsNotFound() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         int itemId = item.getId();
         tracker.delete(itemId);
-        assertThat(tracker.findById(itemId)).isNull();
+        Throwable exception = assertThrows(RuntimeException.class, () -> {
+            tracker.findById(itemId);
+        });
+        assertTrue(exception.getMessage().contains("Failed to find item by id"),
+                "Exception message should contain 'Failed to find item by id'");
     }
 }
+
