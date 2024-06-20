@@ -134,7 +134,7 @@ public class SqlTracker implements Store {
                 if (set.next()) {
                     return createItem(set);
                 } else {
-                    throw new IllegalArgumentException("Item with id " + id + " not found");
+                    return null;
                 }
             }
         } catch (Exception e) {

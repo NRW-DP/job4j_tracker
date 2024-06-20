@@ -8,16 +8,11 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.SqlTracker;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.*;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class SqlTrackerTest {
 
@@ -53,7 +48,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenSaveItemAndFindByGeneratedIdThenMustBeTheSame() {
+    public void whenSaveItemAndFindByGeneratedId() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
@@ -61,7 +56,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenReplaceItemThenReturnTrue() {
+    public void whenReplaceItem() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
@@ -72,7 +67,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenFindByIdThenReturnItem() {
+    public void whenFindById() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
@@ -81,23 +76,43 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenInitTrackerWithConnectionThenTrackerIsInitialized() {
+    public void whenInitTrackerWithConnection() {
         SqlTracker tracker = new SqlTracker(connection);
         assertThat(tracker).isNotNull();
     }
 
     @Test
-    public void whenDeleteItemThenItIsNotFound() {
+    public void whenDeleteItem() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
         tracker.add(item);
         int itemId = item.getId();
         tracker.delete(itemId);
-        Throwable exception = assertThrows(RuntimeException.class, () -> {
-            tracker.findById(itemId);
-        });
-        assertTrue(exception.getMessage().contains("Failed to find item by id"),
-                "Exception message should contain 'Failed to find item by id'");
+        Item foundItem = tracker.findById(itemId);
+        assertNull(foundItem, "Item should be null after deletion");
+    }
+
+    @Test
+    public void whenFindItemsByName() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        tracker.add(item);
+        List<Item> expect = List.of(item);
+        assertThat(tracker.findByName(item.getName())).isEqualTo(expect);
+    }
+
+    @Test
+    public void whenReturnAllItems() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("test1");
+        Item item2 = new Item("test2");
+        Item item3 = new Item("test3");
+        tracker.add(item);
+        tracker.add(item2);
+        tracker.add(item3);
+        List<Item> result = tracker.findAll();
+        List<Item> expect = Arrays.asList(item, item2, item3);
+        assertThat(result).isEqualTo(expect);
     }
 }
 
